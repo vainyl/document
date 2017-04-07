@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vainyl\Document\Repository;
 
-use Vainyl\Core\Name\NameableInterface;
+use Vainyl\Core\NameableInterface;
 use Vainyl\Document\DocumentInterface;
 
 /**
