@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Document\Repository;
 
@@ -27,5 +27,5 @@ interface DocumentRepositoryInterface extends NameableInterface
      *
      * @return null|DocumentInterface
      */
-    public function getDocument(string $id) : ?DocumentInterface;
+    public function getDocument(string $id): ?DocumentInterface;
 }
