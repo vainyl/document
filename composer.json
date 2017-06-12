@@ -13,10 +13,10 @@
         }
     },
     "require": {
-        "vainyl/core": "master",
-        "vainyl/event": "master",
-        "vainyl/operation": "master",
-        "vainyl/time": "master"
+        "vainyl/core": "dev-master",
+        "vainyl/event": "dev-master",
+        "vainyl/operation": "dev-master",
+        "vainyl/time": "dev-master"
     },
     "repositories": [
         {
