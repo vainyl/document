@@ -1,8 +1,8 @@
 services:
   document.hydrator:
     synthetic: true
-  document.operation.factory:
-    synthetic: true
+#  document.operation.factory:
+#    synthetic: true
   document.operation.factory.event:
     class: Vainyl\Document\Operation\Decorator\EventDocumentOperationFactoryDecorator
     decorates: document.operation.factory
