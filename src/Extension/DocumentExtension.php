@@ -14,6 +14,7 @@ namespace Vainyl\Document\Extension;
 
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Vainyl\Core\Exception\MissingRequiredServiceException;
 use Vainyl\Core\Extension\AbstractExtension;
 
 /**
@@ -24,21 +25,28 @@ use Vainyl\Core\Extension\AbstractExtension;
 class DocumentExtension extends AbstractExtension
 {
     /**
-     * @param array $configs
+     * @param array            $configs
      * @param ContainerBuilder $container
      *
      * @return AbstractExtension
+     *
+     * @throws MissingRequiredServiceException
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
         $configuration = new DocumentConfiguration();
         $documentConfiguration = $this->processConfiguration($configuration, $configs);
 
-        $container->setAlias('database.document', new Alias('database.document.' . $documentConfiguration['odm']));
-        $container->setAlias(
-            'document.operation.factory',
-            new Alias('document.operation.factory.' . $documentConfiguration['odm'])
-        );
+        $databaseId = 'database.document.' . $documentConfiguration['odm'];
+        if (false === $container->hasDefinition($databaseId)) {
+            throw new MissingRequiredServiceException($container, $databaseId);
+        }
+        $factoryId = 'document.operation.factory.' . $documentConfiguration['odm'];
+        if (false === $container->hasDefinition($databaseId)) {
+            throw new MissingRequiredServiceException($container, $factoryId);
+        }
+        $container->setAlias('database.document', new Alias($databaseId));
+        $container->setAlias('document.operation.factory', new Alias($factoryId));
 
         return parent::load($configs, $container);
     }
