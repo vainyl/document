@@ -32,7 +32,8 @@ class DocumentConfiguration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('odm')->end()
+            ->scalarNode('database')->end()
+            ->scalarNode('factory')->end()
             ->end()
         ;
 

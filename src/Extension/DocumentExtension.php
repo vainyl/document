@@ -39,8 +39,8 @@ class DocumentExtension extends AbstractExtension
         $configuration = new DocumentConfiguration();
         $documentConfiguration = $this->processConfiguration($configuration, $configs);
 
-        $databaseId = 'database.document.' . $documentConfiguration['odm'];
-        $factoryId = 'document.operation.factory.' . $documentConfiguration['odm'];
+        $databaseId = 'database.' . $documentConfiguration['database'];
+        $factoryId = 'document.operation.factory.' . $documentConfiguration['factory'];
         $container->setAlias('database.document', new Alias($databaseId));
         $container->setAlias('document.operation.factory', new Alias($factoryId));
 
