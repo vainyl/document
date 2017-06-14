@@ -37,7 +37,7 @@ class DocumentExtension extends AbstractExtension
         $container->setAlias('database.document', new Alias('database.document.' . $documentConfiguration['odm']));
         $container->setAlias(
             'document.operation.factory',
-            new Alias('document.operation.factory' . $documentConfiguration['odm'])
+            new Alias('document.operation.factory.' . $documentConfiguration['odm'])
         );
 
         return parent::load($configs, $container);
