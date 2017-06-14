@@ -25,12 +25,7 @@ use Vainyl\Core\Extension\AbstractExtension;
 class DocumentExtension extends AbstractExtension
 {
     /**
-     * @param array            $configs
-     * @param ContainerBuilder $container
-     *
-     * @return AbstractExtension
-     *
-     * @throws MissingRequiredServiceException
+     * @inheritDoc
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
