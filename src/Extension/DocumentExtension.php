@@ -26,6 +26,14 @@ class DocumentExtension extends AbstractExtension
     /**
      * @inheritDoc
      */
+    public function getCompilerPasses(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
         $configuration = new DocumentConfiguration();
