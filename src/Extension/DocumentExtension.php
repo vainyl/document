@@ -14,6 +14,7 @@ namespace Vainyl\Document\Extension;
 
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Vainyl\Core\Extension\AbstractFrameworkExtension;
 use Vainyl\Core\Extension\AbstractExtension;
 
 /**
@@ -21,16 +22,8 @@ use Vainyl\Core\Extension\AbstractExtension;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DocumentExtension extends AbstractExtension
+class DocumentExtension extends AbstractFrameworkExtension
 {
-    /**
-     * @inheritDoc
-     */
-    public function getCompilerPasses(): array
-    {
-        return [];
-    }
-
     /**
      * @inheritDoc
      */
