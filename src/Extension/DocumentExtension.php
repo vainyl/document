@@ -29,6 +29,8 @@ class DocumentExtension extends AbstractFrameworkExtension
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
+        parent::load($configs, $container);
+
         $configuration = new DocumentConfiguration();
         $documentConfiguration = $this->processConfiguration($configuration, $configs);
 
@@ -37,6 +39,6 @@ class DocumentExtension extends AbstractFrameworkExtension
         $container->setAlias('database.document', new Alias($databaseId));
         $container->setAlias('document.operation.factory', new Alias($factoryId));
 
-        return parent::load($configs, $container);
+        return $this;
     }
 }
