@@ -36,8 +36,10 @@ class DocumentExtension extends AbstractFrameworkExtension
 
         $databaseId = 'database.' . $documentConfiguration['database'];
         $factoryId = 'document.operation.factory.' . $documentConfiguration['factory'];
+        $hydratorId = 'document.operation.hydrator.' . $documentConfiguration['factory'];
         $container->setAlias('database.document', new Alias($databaseId));
         $container->setAlias('document.operation.factory', new Alias($factoryId));
+        $container->setAlias('document.operation.hydrator', new Alias($hydratorId));
 
         return $this;
     }

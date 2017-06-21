@@ -34,6 +34,7 @@ class DocumentConfiguration implements ConfigurationInterface
             ->children()
             ->scalarNode('database')->end()
             ->scalarNode('factory')->end()
+            ->scalarNode('hydrator')->end()
             ->end()
         ;
 
