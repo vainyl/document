@@ -15,9 +15,9 @@ namespace Vainyl\Document\Operation\Decorator;
 use Vainyl\Document\DocumentInterface;
 use Vainyl\Document\Event\CreateDocumentEvent;
 use Vainyl\Document\Event\DeleteDocumentEvent;
+use Vainyl\Document\Event\UpdateDocumentEvent;
 use Vainyl\Document\Event\UpsertDocumentEvent;
 use Vainyl\Document\Operation\Factory\DocumentOperationFactoryInterface;
-use Vainyl\Document\Event\UpdateDocumentEvent;
 use Vainyl\Event\EventDispatcherInterface;
 use Vainyl\Event\Operation\DispatchEventOperation;
 use Vainyl\Operation\Collection\Factory\CollectionFactoryInterface;
@@ -38,15 +38,14 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
      * EventDocumentOperationFactoryDecorator constructor.
      *
      * @param DocumentOperationFactoryInterface $operationFactory
-     * @param CollectionFactoryInterface $collectionFactory
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param CollectionFactoryInterface        $collectionFactory
+     * @param EventDispatcherInterface          $eventDispatcher
      */
     public function __construct(
         DocumentOperationFactoryInterface $operationFactory,
         CollectionFactoryInterface $collectionFactory,
         EventDispatcherInterface $eventDispatcher
-    )
-    {
+    ) {
         $this->collectionFactory = $collectionFactory;
         $this->eventDispatcher = $eventDispatcher;
         parent::__construct($operationFactory);
@@ -59,9 +58,10 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
     {
         return $this->collectionFactory
             ->create()
-            ->add(parent::create($document))->add(
+            ->add(
                 new DispatchEventOperation($this->eventDispatcher, new CreateDocumentEvent($document))
-            );
+            )
+            ->add(parent::create($document));
     }
 
     /**
@@ -71,9 +71,10 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
     {
         return $this->collectionFactory
             ->create()
-            ->add(parent::update($newDocument, $oldDocument))->add(
+            ->add(
                 new DispatchEventOperation($this->eventDispatcher, new UpdateDocumentEvent($newDocument, $oldDocument))
-            );
+            )
+            ->add(parent::update($newDocument, $oldDocument));
     }
 
     /**
@@ -83,9 +84,10 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
     {
         return $this->collectionFactory
             ->create()
-            ->add(parent::delete($document))->add(
+            ->add(
                 new DispatchEventOperation($this->eventDispatcher, new DeleteDocumentEvent($document))
-            );
+            )
+            ->add(parent::delete($document));
     }
 
     /**
@@ -95,8 +97,9 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
     {
         return $this->collectionFactory
             ->create()
-            ->add(parent::upsert($document))->add(
+            ->add(
                 new DispatchEventOperation($this->eventDispatcher, new UpsertDocumentEvent($document))
-            );
+            )
+            ->add(parent::upsert($document));
     }
 }
