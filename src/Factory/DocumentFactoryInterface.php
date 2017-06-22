@@ -12,21 +12,13 @@ declare(strict_types=1);
 
 namespace Vainyl\Document\Factory;
 
-use Vainyl\Core\IdentifiableInterface;
-use Vainyl\Document\DocumentInterface;
+use Vainyl\Core\ArrayX\Factory\ArrayFactoryInterface;
 
 /**
  * Interface DocumentFactoryInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentFactoryInterface extends IdentifiableInterface
+interface DocumentFactoryInterface extends ArrayFactoryInterface
 {
-    /**
-     * @param string $documentName
-     * @param array  $documentData
-     *
-     * @return DocumentInterface
-     */
-    public function create(string $documentName, array $documentData = []): DocumentInterface;
 }
