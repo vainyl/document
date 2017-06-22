@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Document\Hydrator;
 
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Document\DocumentInterface;
 
 /**
@@ -19,7 +20,7 @@ use Vainyl\Document\DocumentInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentHydratorInterface
+interface DocumentHydratorInterface extends IdentifiableInterface
 {
     /**
      * @param string $name
