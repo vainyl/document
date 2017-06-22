@@ -24,9 +24,9 @@ interface DocumentHydratorInterface extends IdentifiableInterface
 {
     /**
      * @param string $name
-     * @param array $documentData
+     * @param array  $documentData
      *
      * @return DocumentInterface
      */
-    public function create(string $name, array $documentData): DocumentInterface;
+    public function hydrate(string $name, array $documentData): DocumentInterface;
 }
