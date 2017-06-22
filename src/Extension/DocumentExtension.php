@@ -14,8 +14,8 @@ namespace Vainyl\Document\Extension;
 
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Vainyl\Core\Extension\AbstractFrameworkExtension;
 use Vainyl\Core\Extension\AbstractExtension;
+use Vainyl\Core\Extension\AbstractFrameworkExtension;
 
 /**
  * Class DocumentExtension
@@ -35,11 +35,11 @@ class DocumentExtension extends AbstractFrameworkExtension
         $documentConfiguration = $this->processConfiguration($configuration, $configs);
 
         $databaseId = 'database.' . $documentConfiguration['database'];
-        $factoryId = 'document.operation.factory.' . $documentConfiguration['factory'];
-        $hydratorId = 'document.factory.' . $documentConfiguration['factory'];
+        $operationId = 'document.operation.factory.' . $documentConfiguration['factory'];
+        $factoryId = 'document.factory.' . $documentConfiguration['factory'];
         $container->setAlias('database.document', new Alias($databaseId));
-        $container->setAlias('document.operation.factory', new Alias($factoryId));
-        $container->setAlias('document.factory', new Alias($hydratorId));
+        $container->setAlias('document.operation.factory', new Alias($operationId));
+        $container->setAlias('document.factory', new Alias($factoryId));
 
         return $this;
     }
