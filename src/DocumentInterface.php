@@ -26,16 +26,16 @@ interface DocumentInterface extends ArrayInterface, NameableInterface
     /**
      * @param TimeInterface $time
      *
-     * @return DocumentInterface
+     * @return ArrayInterface
      */
-    public function setCreatedAt(TimeInterface $time): DocumentInterface;
+    public function setCreatedAt(TimeInterface $time): ArrayInterface;
 
     /**
      * @param TimeInterface $time
      *
-     * @return DocumentInterface
+     * @return ArrayInterface
      */
-    public function setUpdatedAt(TimeInterface $time): DocumentInterface;
+    public function setUpdatedAt(TimeInterface $time): ArrayInterface;
 
     /**
      * @return TimeInterface
