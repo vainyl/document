@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Document;
 
@@ -24,12 +24,26 @@ use Vainyl\Time\TimeInterface;
 interface DocumentInterface extends ArrayInterface, NameableInterface
 {
     /**
-     * @return TimeInterface
+     * @param TimeInterface $time
+     *
+     * @return DocumentInterface
      */
-    public function createdAt() : TimeInterface;
+    public function setCreatedAt(TimeInterface $time): DocumentInterface;
+
+    /**
+     * @param TimeInterface $time
+     *
+     * @return DocumentInterface
+     */
+    public function setUpdatedAt(TimeInterface $time): DocumentInterface;
 
     /**
      * @return TimeInterface
      */
-    public function updatedAt() : TimeInterface;
+    public function createdAt(): TimeInterface;
+
+    /**
+     * @return TimeInterface
+     */
+    public function updatedAt(): TimeInterface;
 }
