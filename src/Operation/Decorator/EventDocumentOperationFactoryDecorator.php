@@ -18,6 +18,7 @@ use Vainyl\Document\Event\DeleteDocumentEvent;
 use Vainyl\Document\Event\UpdateDocumentEvent;
 use Vainyl\Document\Event\UpsertDocumentEvent;
 use Vainyl\Document\Operation\Factory\DocumentOperationFactoryInterface;
+use Vainyl\Domain\DomainInterface;
 use Vainyl\Event\EventDispatcherInterface;
 use Vainyl\Event\Operation\DispatchEventOperation;
 use Vainyl\Operation\Collection\Factory\CollectionFactoryInterface;
@@ -52,54 +53,63 @@ class EventDocumentOperationFactoryDecorator extends AbstractDocumentOperationFa
     }
 
     /**
-     * @inheritDoc
+     * @param DocumentInterface $domain
+     *
+     * @return OperationInterface
      */
-    public function create(DocumentInterface $document): OperationInterface
+    public function create(DomainInterface $domain): OperationInterface
     {
         return $this->collectionFactory
             ->create()
             ->add(
-                new DispatchEventOperation($this->eventDispatcher, new CreateDocumentEvent($document))
+                new DispatchEventOperation($this->eventDispatcher, new CreateDocumentEvent($domain))
             )
-            ->add(parent::create($document));
+            ->add(parent::create($domain));
     }
 
     /**
-     * @inheritDoc
+     * @param DocumentInterface $domain
+     *
+     * @return OperationInterface
      */
-    public function update(DocumentInterface $newDocument, DocumentInterface $oldDocument): OperationInterface
+    public function delete(DomainInterface $domain): OperationInterface
     {
         return $this->collectionFactory
             ->create()
             ->add(
-                new DispatchEventOperation($this->eventDispatcher, new UpdateDocumentEvent($newDocument, $oldDocument))
+                new DispatchEventOperation($this->eventDispatcher, new DeleteDocumentEvent($domain))
             )
-            ->add(parent::update($newDocument, $oldDocument));
+            ->add(parent::delete($domain));
     }
 
     /**
-     * @inheritDoc
+     * @param DocumentInterface $newDomain
+     * @param DocumentInterface $oldDomain
+     *
+     * @return OperationInterface
      */
-    public function delete(DocumentInterface $document): OperationInterface
+    public function update(DomainInterface $newDomain, DomainInterface $oldDomain): OperationInterface
     {
         return $this->collectionFactory
             ->create()
             ->add(
-                new DispatchEventOperation($this->eventDispatcher, new DeleteDocumentEvent($document))
+                new DispatchEventOperation($this->eventDispatcher, new UpdateDocumentEvent($newDomain, $oldDomain))
             )
-            ->add(parent::delete($document));
+            ->add(parent::update($newDomain, $oldDomain));
     }
 
     /**
-     * @inheritDoc
+     * @param DocumentInterface $domain
+     *
+     * @return OperationInterface
      */
-    public function upsert(DocumentInterface $document): OperationInterface
+    public function upsert(DomainInterface $domain): OperationInterface
     {
         return $this->collectionFactory
             ->create()
             ->add(
-                new DispatchEventOperation($this->eventDispatcher, new UpsertDocumentEvent($document))
+                new DispatchEventOperation($this->eventDispatcher, new UpsertDocumentEvent($domain))
             )
-            ->add(parent::upsert($document));
+            ->add(parent::upsert($domain));
     }
 }

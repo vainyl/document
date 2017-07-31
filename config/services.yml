@@ -1,11 +1,6 @@
 services:
   document.operation.factory.event:
-    class: Vainyl\Document\Operation\Decorator\EventDocumentOperationFactoryDecorator
     decorates: document.operation.factory
     decoration_priority: 1000
+    class: Vainyl\Document\Operation\Decorator\EventDocumentOperationFactoryDecorator
     arguments: ['@document.operation.factory.event.inner', '@collection.factory.sequence', '@event.dispatcher.collection']
-  document.operation.factory.timestamp:
-    class: Vainyl\Document\Operation\Decorator\TimestampDocumentOperationFactoryDecorator
-    decorates: document.operation.factory
-    decoration_priority: 100
-    arguments: ['@document.operation.factory.timestamp.inner', '@collection.factory.sequence', '@time.provider']
