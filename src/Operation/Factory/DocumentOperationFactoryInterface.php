@@ -12,43 +12,13 @@ declare(strict_types=1);
 
 namespace Vainyl\Document\Operation\Factory;
 
-use Vainyl\Core\IdentifiableInterface;
-use Vainyl\Document\DocumentInterface;
-use Vainyl\Operation\OperationInterface;
+use Vainyl\Domain\Operation\Factory\DomainOperationFactoryInterface;
 
 /**
  * Class DocumentOperationFactoryInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentOperationFactoryInterface extends IdentifiableInterface
+interface DocumentOperationFactoryInterface extends DomainOperationFactoryInterface
 {
-    /**
-     * @param DocumentInterface $document
-     *
-     * @return OperationInterface
-     */
-    public function create(DocumentInterface $document) : OperationInterface;
-
-    /**
-     * @param DocumentInterface $newDocument
-     * @param DocumentInterface $oldDocument
-     *
-     * @return OperationInterface
-     */
-    public function update(DocumentInterface $newDocument, DocumentInterface $oldDocument) : OperationInterface;
-
-    /**
-     * @param DocumentInterface $document
-     *
-     * @return OperationInterface
-     */
-    public function delete(DocumentInterface $document) : OperationInterface;
-
-    /**
-     * @param DocumentInterface $document
-     *
-     * @return OperationInterface
-     */
-    public function upsert(DocumentInterface $document) : OperationInterface;
 }
