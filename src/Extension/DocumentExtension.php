@@ -53,13 +53,13 @@ class DocumentExtension extends AbstractFrameworkExtension
         $factoryDefinition = $container->findDefinition('document.operation.factory');
         $factoryDefinition->replaceArgument(
             0,
-            sprintf('document.operation.factory.%', $documentConfiguration['factory'])
+            sprintf('document.operation.factory.%s', $documentConfiguration['factory'])
         );
         if (false === $container->hasDefinition('document.hydrator')) {
             throw new MissingRequiredServiceException($container, 'document.hydrator');
         }
         $hydratorDefinition = $container->findDefinition('document.hydrator');
-        $hydratorDefinition->replaceArgument(0, sprintf('document.hydrator.%', $documentConfiguration['factory']));
+        $hydratorDefinition->replaceArgument(0, sprintf('document.hydrator.%s', $documentConfiguration['factory']));
         if (false === $container->hasDefinition('database.document')) {
             throw new MissingRequiredServiceException($container, 'database.document');
         }
