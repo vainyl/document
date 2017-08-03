@@ -34,14 +34,14 @@ class DocumentDatabaseCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'document.registry');
         }
 
-        $containerDefinition = $container->getDefinition('document.registry');
+        $registryDefinition = $container->getDefinition('document.registry');
         foreach ($container->findTaggedServiceIds('document.database') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
 
-                $containerDefinition
+                $registryDefinition
                     ->addMethodCall('addDatabase', [$attributes['alias'], new Reference($id)]);
             }
         }

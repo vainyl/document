@@ -34,14 +34,14 @@ class DocumentHydratorCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'document.registry');
         }
 
-        $containerDefinition = $container->getDefinition('document.registry');
+        $registryDefinition = $container->getDefinition('document.registry');
         foreach ($container->findTaggedServiceIds('document.hydrator') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
 
-                $containerDefinition
+                $registryDefinition
                     ->addMethodCall('addHydrator', [$attributes['alias'], new Reference($id)]);
             }
         }
