@@ -13,6 +13,7 @@ services:
     arguments:
       - 'hydrator'
     tags:
+      - {name: hydrator, alias: document}
       - {name: domain.hydrator, alias: document}
   database.document:
     factory: ['@document.registry', 'getDatabase']
