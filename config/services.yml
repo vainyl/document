@@ -1,4 +1,24 @@
 services:
+  document.registry:
+    class: Vainyl\Document\Registry\DocumentRegistry
+    arguments: ['@storage.prototype', '@app.di']
+  document.operation.factory:
+    factory: ['@document.registry', 'getFactory']
+    arguments:
+      - 'factory'
+    tags:
+      - {name: domain.operation.factory, alias: document}
+  document.hydrator:
+    factory: ['@document.registry', 'getHydrator']
+    arguments:
+      - 'hydrator'
+    tags:
+      - {name: hydrator, alias: document}
+      - {name: domain.hydrator, alias: document}
+  database.document:
+    factory: ['@document.registry', 'getDatabase']
+    arguments:
+      - 'database'
   document.operation.factory.event:
     decorates: document.operation.factory
     decoration_priority: 1000

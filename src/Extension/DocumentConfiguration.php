@@ -34,8 +34,7 @@ class DocumentConfiguration implements ConfigurationInterface
             ->children()
             ->scalarNode('database')->end()
             ->scalarNode('factory')->end()
-            ->end()
-        ;
+            ->end();
 
         return $treeBuilder;
     }

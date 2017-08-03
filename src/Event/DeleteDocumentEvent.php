@@ -36,18 +36,18 @@ class DeleteDocumentEvent extends AbstractIdentifiable implements EventInterface
     }
 
     /**
+     * @return DocumentInterface
+     */
+    public function getDocument(): DocumentInterface
+    {
+        return $this->document;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return $this->document->getName() . '.' . 'delete';
-    }
-
-    /**
-     * @return DocumentInterface
-     */
-    public function getDocument() : DocumentInterface
-    {
-        return $this->document;
+        return sprintf('document.%s.delete', $this->document->getName());
     }
 }

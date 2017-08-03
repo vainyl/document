@@ -29,6 +29,7 @@ class UpdateDocumentEvent extends AbstractIdentifiable implements EventInterface
 
     /**
      * UpdateDocumentEvent constructor.
+     *
      * @param DocumentInterface $newDocument
      * @param DocumentInterface $oldDocument
      */
@@ -43,7 +44,7 @@ class UpdateDocumentEvent extends AbstractIdentifiable implements EventInterface
      */
     public function getName(): string
     {
-        return $this->newDocument->getName() . '.' . 'update';
+        return sprintf('document.%s.update', $this->newDocument->getName());
     }
 
     /**

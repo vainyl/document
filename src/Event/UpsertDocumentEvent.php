@@ -36,18 +36,18 @@ class UpsertDocumentEvent extends AbstractIdentifiable implements EventInterface
     }
 
     /**
+     * @return DocumentInterface
+     */
+    public function getDocument(): DocumentInterface
+    {
+        return $this->document;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return $this->document->getName() . '.' . 'upsert';
-    }
-
-    /**
-     * @return DocumentInterface
-     */
-    public function getDocument() : DocumentInterface
-    {
-        return $this->document;
+        return sprintf('document.%s.upsert', $this->document->getName());
     }
 }

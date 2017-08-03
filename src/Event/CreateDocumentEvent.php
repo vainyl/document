@@ -36,18 +36,18 @@ class CreateDocumentEvent extends AbstractIdentifiable implements EventInterface
     }
 
     /**
+     * @return DocumentInterface
+     */
+    public function getDocument(): DocumentInterface
+    {
+        return $this->document;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return $this->document->getName() . '.' . 'create';
-    }
-
-    /**
-     * @return DocumentInterface
-     */
-    public function getDocument() : DocumentInterface
-    {
-        return $this->document;
+        return sprintf('document.%s.create', $this->document->getName());
     }
 }
