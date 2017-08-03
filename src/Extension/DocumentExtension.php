@@ -65,8 +65,9 @@ class DocumentExtension extends AbstractFrameworkExtension
             throw new MissingRequiredServiceException($container, 'database.document');
         }
 
-        $databaseDefinition = $container->findDefinition('database.document');
-        $databaseDefinition->replaceArgument(0, sprintf('database.document.%', $documentConfiguration['database']));
+        $container->findDefinition('database.document')
+                  ->replaceArgument(0, sprintf('database.document.%', $documentConfiguration['database']))
+                  ->addTag('document.database', ['alias' => $documentConfiguration['database']]);
 
         return $this;
     }
