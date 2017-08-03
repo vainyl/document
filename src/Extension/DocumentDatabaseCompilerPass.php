@@ -34,7 +34,7 @@ class DocumentDatabaseCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'document.registry');
         }
 
-        $containerDefinition = $container->getDefinition('document.database');
+        $containerDefinition = $container->getDefinition('document.registry');
         foreach ($container->findTaggedServiceIds('document.database') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
