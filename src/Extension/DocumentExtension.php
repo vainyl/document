@@ -27,6 +27,18 @@ class DocumentExtension extends AbstractFrameworkExtension
     /**
      * @inheritDoc
      */
+    public function getCompilerPasses(): array
+    {
+        return [
+            new DocumentDatabaseCompilerPass(),
+            new DocumentHydratorCompilerPass(),
+            new DocumentOperationFactoryCompilerPass(),
+        ];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
         parent::load($configs, $container);
