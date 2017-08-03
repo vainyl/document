@@ -66,7 +66,7 @@ class DocumentExtension extends AbstractFrameworkExtension
         }
 
         $container->findDefinition('database.document')
-                  ->replaceArgument(0, sprintf('database.document.%', $documentConfiguration['database']))
+                  ->replaceArgument(0, sprintf('database.document.%s', $documentConfiguration['database']))
                   ->addTag('document.database', ['alias' => $documentConfiguration['database']]);
 
         return $this;
