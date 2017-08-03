@@ -12,18 +12,18 @@ declare(strict_types=1);
 
 namespace Vainyl\Document\Extension;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Vainyl\Core\Exception\MissingRequiredFieldException;
 use Vainyl\Core\Exception\MissingRequiredServiceException;
+use Vainyl\Core\Extension\AbstractCompilerPass;
 
 /**
  * Class DocumentOperationFactoryCompilerPass
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DocumentOperationFactoryCompilerPass implements CompilerPassInterface
+class DocumentOperationFactoryCompilerPass extends AbstractCompilerPass
 {
     /**
      * @inheritDoc
