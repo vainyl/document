@@ -30,7 +30,6 @@ class DocumentExtension extends AbstractFrameworkExtension
     public function getCompilerPasses(): array
     {
         return [
-            new DocumentDatabaseCompilerPass(),
             new DocumentHydratorCompilerPass(),
             new DocumentOperationFactoryCompilerPass(),
         ];
@@ -65,9 +64,9 @@ class DocumentExtension extends AbstractFrameworkExtension
             throw new MissingRequiredServiceException($container, 'database.document');
         }
 
-        $container->findDefinition('database.document')
-                  ->replaceArgument(0, sprintf('database.document.%s', $documentConfiguration['database']))
-                  ->addTag('document.database', ['alias' => $documentConfiguration['database']]);
+        $container
+            ->findDefinition('database.document')
+            ->replaceArgument(0, sprintf('database.%s', $documentConfiguration['database']));
 
         return $this;
     }

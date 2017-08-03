@@ -25,14 +25,6 @@ use Vainyl\Document\Operation\Factory\DocumentOperationFactoryInterface;
 interface DocumentRegistryInterface extends StorageInterface
 {
     /**
-     * @param string            $alias
-     * @param DatabaseInterface $database
-     *
-     * @return DocumentRegistryInterface
-     */
-    public function addDatabase(string $alias, DatabaseInterface $database): DocumentRegistryInterface;
-
-    /**
      * @param string                            $alias
      * @param DocumentOperationFactoryInterface $factory
      *
