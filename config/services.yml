@@ -1,7 +1,7 @@
 services:
   document.registry:
     class: Vainyl\Document\Registry\DocumentRegistry
-    arguments: ['@storage.prototype', '@app.di']
+    arguments: ['@map.prototype', '@app.di']
   document.operation.factory:
     factory: ['@document.registry', 'getFactory']
     arguments:
