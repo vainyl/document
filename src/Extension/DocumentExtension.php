@@ -30,8 +30,8 @@ class DocumentExtension extends AbstractFrameworkExtension
     public function getCompilerPasses(): array
     {
         return [
-            new DocumentHydratorCompilerPass(),
-            new DocumentOperationFactoryCompilerPass(),
+            [new DocumentHydratorCompilerPass()],
+            [new DocumentOperationFactoryCompilerPass()],
         ];
     }
 
