@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Document\Registry;
 
 use Vainyl\Core\Hydrator\HydratorInterface;
-use Vainyl\Core\Storage\StorageInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Database\DatabaseInterface;
 use Vainyl\Document\Operation\Factory\DocumentOperationFactoryInterface;
 
@@ -22,7 +22,7 @@ use Vainyl\Document\Operation\Factory\DocumentOperationFactoryInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentRegistryInterface extends StorageInterface
+interface DocumentRegistryInterface extends IdentifiableInterface
 {
     /**
      * @param string                            $alias
